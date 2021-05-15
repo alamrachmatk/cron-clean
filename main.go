@@ -49,7 +49,6 @@ func CronClean() {
 
 					for scanner.Scan() {
 						txtlines = append(txtlines, scanner.Text())
-						log.Println("MASUK 4")
 					}
 
 					file.Close()
