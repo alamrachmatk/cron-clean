@@ -76,6 +76,7 @@ func CronClean() {
 			}
 		}
 	}
+	return
 }
 
 func visit(files *[]string) filepath.WalkFunc {
