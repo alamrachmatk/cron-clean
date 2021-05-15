@@ -26,23 +26,19 @@ func CronClean() {
 	if err != nil {
 		log.Println(err)
 	} else {
-		log.Println("MASUK 1")
 		for a, getFile := range files {
 			if a != 0 {
 				fileName := config.DnsLog + filepath.Base(getFile)
 				var extension = filepath.Ext(fileName)
 				if extension != ".filepart" {
-					log.Println("MASUK 2")
 					file, err := os.Open(fileName) // For read access.
 					partsFilename := strings.Split(file.Name(), "_")
 					partsDate := strings.Split(partsFilename[2], "-")
-					log.Println("MASUK 2.5")
 					//get date
 					date := partsDate[2] + "-" + partsDate[1] + "-" + partsDate[0]
 					if err != nil {
 						log.Println(err)
 					}
-					log.Println("MASUK 3")
 					scanner := bufio.NewScanner(file)
 					scanner.Split(bufio.ScanLines)
 					var txtlines []string
@@ -52,7 +48,6 @@ func CronClean() {
 					}
 
 					file.Close()
-					log.Println("MASUK 5")
 					currentTime := time.Now()
 					dateNow := currentTime.Format("2006-01-02")
 					if date != dateNow {
