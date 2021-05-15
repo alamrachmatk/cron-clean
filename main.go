@@ -14,7 +14,7 @@ import (
 
 func main() {
 
-	gocron.Every(2).Seconds().Do(CronClean)
+	gocron.Every(5).Seconds().Do(CronClean)
 
 	<-gocron.Start()
 }
@@ -36,9 +36,9 @@ func CronClean() {
 					file, err := os.Open(fileName) // For read access.
 					partsFilename := strings.Split(file.Name(), "_")
 					partsDate := strings.Split(partsFilename[2], "-")
+					log.Println("MASUK 2.5")
 					//get date
 					date := partsDate[2] + "-" + partsDate[1] + "-" + partsDate[0]
-					checkQuestion := "question for '"
 					if err != nil {
 						log.Println(err)
 					}
@@ -53,30 +53,19 @@ func CronClean() {
 
 					file.Close()
 					log.Println("MASUK 5")
-					for _, eachline := range txtlines {
-						if strings.Contains(eachline, checkQuestion) {
-							result := strings.SplitAfter(eachline, checkQuestion)
-							for i := range result {
-								if i == 1 {
-									currentTime := time.Now()
-									dateNow := currentTime.Format("2006-01-02")
-									if date != dateNow {
-										e := os.Remove(fileName)
-										if e != nil {
-											log.Println(e)
-										}
-										return
-									}
-								}
-							}
-
+					currentTime := time.Now()
+					dateNow := currentTime.Format("2006-01-02")
+					if date != dateNow {
+						e := os.Remove(fileName)
+						if e != nil {
+							log.Println(e)
 						}
+						return
 					}
 				}
 			}
 		}
 	}
-	return
 }
 
 func visit(files *[]string) filepath.WalkFunc {
