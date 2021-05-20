@@ -14,7 +14,7 @@ import (
 
 func main() {
 
-	gocron.Every(5).Seconds().Do(CronClean)
+	gocron.Every(10).Seconds().Do(CronClean)
 
 	<-gocron.Start()
 }
