@@ -34,6 +34,7 @@ func CronClean() {
 				if extension != ".filepart" {
 				log.Println("MASUK 2");
 					file, err := os.Open(fileName) // For read access.
+					log.Println("MASUK 2 err : ", err);
 					partsFilename := strings.Split(file.Name(), "_")
 					partsDate := strings.Split(partsFilename[2], "-")
 					log.Println("MASUK 3");
