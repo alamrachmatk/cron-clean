@@ -2,9 +2,9 @@ package main
 
 import (
 	"cron-clean/config"
-	"fmt"
 	"os"
 	"path/filepath"
+	"log"
 
 	"github.com/jasonlvhit/gocron"
 )
@@ -19,7 +19,7 @@ func main() {
 func CronClean() {
 	err := ClearDir(config.DnsLog)
 	if err != nil {
-		fmt.Println(err)
+		log.Println(err)
 	}
 	// var files []string
 	// root := config.DnsLog
