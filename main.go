@@ -11,7 +11,7 @@ import (
 
 func main() {
 
-	gocron.Every(1).Day().At("12:20").Do(CronClean)
+	gocron.Every(1).Day().At("00:15").Do(CronClean)
 
 	<-gocron.Start()
 }
