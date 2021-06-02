@@ -17,6 +17,7 @@ func main() {
 }
 
 func CronClean() {
+	log.Println("MASUK")
 	err := ClearDir(config.DnsLog)
 	if err != nil {
 		log.Println(err)
@@ -78,7 +79,9 @@ func CronClean() {
 // }
 
 func ClearDir(dir string) error {
+	log.Println("MASUK2")
 	files, err := filepath.Glob(filepath.Join(dir, "*"))
+	log.Println(files)
 	if err != nil {
 		log.Println(err)
 		return err
